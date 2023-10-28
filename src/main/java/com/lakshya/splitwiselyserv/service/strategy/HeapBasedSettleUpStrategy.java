@@ -60,24 +60,21 @@ public class HeapBasedSettleUpStrategy implements SettleUpStrategy {
         var receiver = maxHeap.poll();
 
         assert sender != null;
-        double sendAmt = sender.getValue();
         assert receiver != null;
-        double receiveAmt = receiver.getValue();
-        double transactionAmt = sendAmt;
-
-        if (sendAmt > receiveAmt) {
-            transactionAmt = receiveAmt;
-            sender.setValue(sendAmt + receiveAmt);
+        double balanceAmount = sender.getValue() + receiver.getValue();
+        
+        if (balanceAmount < 0) {
+            sender.setValue(balanceAmount);
             minHeap.offer(sender);
-        } else if (sendAmt < receiveAmt) {
-            transactionAmt = sendAmt;
-            receiver.setValue(receiveAmt - sendAmt);
+        } else if (balanceAmount > 0) {
+            receiver.setValue(balanceAmount);
             maxHeap.offer(receiver);
         }
-
+        
         TransactionDTO transactionDTO = new TransactionDTO();
         transactionDTO.setFromUserName(sender.getKey());
         transactionDTO.setToUserName(receiver.getKey());
+        double transactionAmt = Math.min(Math.abs(sender.getValue()),receiver.getValue());
         transactionDTO.setAmount(transactionAmt);
 
         return transactionDTO;
