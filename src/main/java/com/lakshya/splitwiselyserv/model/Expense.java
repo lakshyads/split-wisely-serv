@@ -1,11 +1,15 @@
 package com.lakshya.splitwiselyserv.model;
 
+import java.util.List;
+
 import com.lakshya.splitwiselyserv.model.constants.Currency;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter
 @Setter

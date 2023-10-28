@@ -1,7 +1,11 @@
 package com.lakshya.splitwiselyserv.model;
 
 import com.lakshya.splitwiselyserv.model.constants.UserExpenseType;
-import jakarta.persistence.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
 
