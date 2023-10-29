@@ -1,26 +1,21 @@
 package com.lakshya.splitwiselyserv.model;
 
-import java.util.List;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToMany;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
 @Builder
 @Entity(name = "splitwisely_user")
-@NoArgsConstructor
-@AllArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class User extends BaseModel {
-    private String name;
-    private String email;
-    private String phone_number;
-
     @ManyToMany(mappedBy = "users")
     List<Group> groups;
+    private String name;
+    private String email;
+    private String phoneNumber;
 }
