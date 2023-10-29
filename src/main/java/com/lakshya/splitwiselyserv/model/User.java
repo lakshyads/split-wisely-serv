@@ -10,8 +10,8 @@ import java.util.List;
 @Setter
 @Builder
 @Entity(name = "splitwisely_user")
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@NoArgsConstructor
+@AllArgsConstructor
 public class User extends BaseModel {
     @ManyToMany(mappedBy = "users")
     List<Group> groups;
