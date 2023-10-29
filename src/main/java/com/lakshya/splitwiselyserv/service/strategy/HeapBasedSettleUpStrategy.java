@@ -62,7 +62,7 @@ public class HeapBasedSettleUpStrategy implements SettleUpStrategy {
         assert sender != null;
         assert receiver != null;
         double balanceAmount = sender.getValue() + receiver.getValue();
-        
+
         if (balanceAmount < 0) {
             sender.setValue(balanceAmount);
             minHeap.offer(sender);
@@ -70,11 +70,11 @@ public class HeapBasedSettleUpStrategy implements SettleUpStrategy {
             receiver.setValue(balanceAmount);
             maxHeap.offer(receiver);
         }
-        
+
         TransactionDTO transactionDTO = new TransactionDTO();
         transactionDTO.setFromUserName(sender.getKey());
         transactionDTO.setToUserName(receiver.getKey());
-        double transactionAmt = Math.min(Math.abs(sender.getValue()),receiver.getValue());
+        double transactionAmt = Math.min(Math.abs(sender.getValue()), receiver.getValue());
         transactionDTO.setAmount(transactionAmt);
 
         return transactionDTO;

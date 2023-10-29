@@ -11,12 +11,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity(name = "SPLITWISELY_USEREXPENSE")
+@Entity(name = "splitwisely_user_expense")
 public class UserExpense extends BaseModel {
+    private double amount;
 
     @ManyToOne
     private User user;
-    private double amount;
+
     @Enumerated(EnumType.STRING)
     private UserExpenseType userExpenseType;
 
